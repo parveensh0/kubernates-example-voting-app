@@ -6,7 +6,8 @@ metadata:
     name: result-service
     app: demo-voting-app
 spec:
-  type: LoadBalancer
+  #type: LoadBalancer : Note: LoadBalancer will only work on cloud platforms, so we are using NodePort instead of LoadBalancer
+  type: NodePort
   ports:
     - port: 80
       targetPort: 80
