@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: reporting-cron-job
+spec:
+  schedule: "*/1 * * * * *"
+  jobTemplate:
+    spec:
+      completions: 3
+      parallelism: 3
+    template:
+      spec:
+        containers:
+          - name: math-add
+            image: ubuntu
+            command: ['expr','3','+','2']
+        restartPolicy: Never
+
+   #      Execute command:
+   #      1) To create a cronjob - kubectl create -f cronjob-definition.yaml
+   #      2) TO view the cronjob - kubectl get cronjob <Cronjob name>
